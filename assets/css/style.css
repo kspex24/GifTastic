@@ -1,0 +1,49 @@
+.jumbotron {
+
+    background-color: rgb(25, 176, 202);
+    height: 95px;
+    padding-top: 3px;
+    padding-bottom: 8px;
+    margin-top: 20px;
+}
+
+#topicBtns {
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right:10px;
+}
+
+#topicInput {
+
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    font-family: cursive;
+    color: white;
+    font-weight: bold;
+    font-size: 48px;
+    font-stretch: ultra-expanded;
+    
+}
+
+label {
+
+    padding-right: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+
+
+}
+/* #topic {
+    float: left;
+} */
