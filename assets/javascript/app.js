@@ -1,7 +1,7 @@
 //Create array of cities for ibitial buttons
 
       // Initial array of movies
-      var cities = ["New York", "Chicago", "London", "Paris", "Los Angeles", "Honolulu", "Rome", "Prague", "Seattle"];
+      var cities = ["LSU", "USC", "Notre Dame", "Oregon", "Alabama", "Georgia Tech", "Clemson", "Florida State"];
 
     //Create click event to store text input
 
@@ -18,32 +18,32 @@
 
                         //  Generate buttons for each city in the array.
                         
-                        var cityBtn = $("<button>");
-                        
-                        cityBtn.addClass("city");
-                        // Adding a data-attribute with a value of the movie at index i
-                        cityBtn.attr("data-name", cities[i]);
-                        // Providing the button's text with a value of the movie at index i
-                        cityBtn.text(cities[i]);
-                        // Adding the button to the HTML
-                        $("#topicBtns").append(cityBtn);
+                          var cityBtn = $("<button>");
+                          
+                          cityBtn.addClass("city");
+                          // Adding a data-attribute with a value of the movie at index i
+                          cityBtn.attr("data-name", cities[i]);
+                          // Providing the button's text with a value of the movie at index i
+                          cityBtn.text(cities[i]);
+                          // Adding the button to the HTML
+                          $("#topicBtns").append(cityBtn);
                         }
         }
 
 // This function handles events where one button is clicked
-// $("#addTopic").on("click", function(event) {
-//   // event.preventDefault() prevents the form from trying to submit itself.
-//   // We're using a form so that the user can hit enter instead of clicking the button if they want
-//   event.preventDefault();
+$("#addTopic").on("click", function(event) {
+  // event.preventDefault() prevents the form from trying to submit itself.
+  // We're using a form so that the user can hit enter instead of clicking the button if they want
+  event.preventDefault();
 
-//   // This line will grab the text from the input box
-//   var newCityInput = $("#topicInput").val().trim();
-//   // The movie from the textbox is then added to our array
-//   cities.push(newCityInput);
+  // This line will grab the text from the input box
+  var newCityInput = $("#topicInput").val().trim();
+  // The movie from the textbox is then added to our array
+  cities.push(newCityInput);
 
   // calling renderButtons which handles the processing of our movie array
   createButtons();
-// });
+});
 
 // Calling the renderButtons function at least once to display the initial list of movies
 createButtons();
@@ -51,19 +51,16 @@ createButtons();
 
 //Click event for city buttons to access 10 images from giffy api
 
-//create var query url
+//create var query url, ajax method, display data from ajax 
 
-//ajax method
-
-//display data from ajax 
-
-$(cityBtn).on("click", function() {
+$(".city").on("click", function() {
     // In this case, the "this" keyword refers to the button that was clicked
-    var cityPics = $(this).attr("data-person");
+    var cityPics = $(this).attr("data-name");
 
     // Constructing a URL to search Giphy for the name of the person who said the quote
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=x32n0DhaGUvtJB5iyZrrR89szqADjIy5&q=LosAngeles&limit=10&offset=0&rating=PG&lang=en";
-
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=x32n0DhaGUvtJB5iyZrrR89szqADjIy5&q="+cities+"&limit=10&offset=0&rating=PG&lang=en"
+    
+    
     // Performing our AJAX GET request
     $.ajax({
       url: queryURL,
