@@ -1,66 +1,76 @@
 //Create array of cities for ibitial buttons
 
       // Initial array of movies
-      var cities = ["LSU", "USC", "Notre Dame", "Oregon", "Alabama", "Georgia Tech", "Clemson", "Florida State"];
+      var teams = ["LSU", "USC", "Notre Dame", "Oregon", "Alabama", "Georgia Tech", "Clemson", "Baylor"];
 
     //Create click event to store text input
 
-    //Push input to city array
+    //Push input to teams array
 
-    //Function to make buttons for each city in array, append to div
+    //Function to make buttons for each team in array, append to div
 
         function createButtons() {
 
         $("#topicBtns").empty();
+        
 
-        // Looping through the array of cities
-                        for (var i = 0; i < cities.length; i++) {
+        // Loopthrough the array of teams
+                        for (var i = 0; i < teams.length; i++) {
 
-                        //  Generate buttons for each city in the array.
+                        //  Generate buttons for each team in the array.
                         
-                          var cityBtn = $("<button>");
+                          var teamBtn = $("<button>");
                           
-                          cityBtn.addClass("city");
+                          teamBtn.addClass("team");
                           // Adding a data-attribute with a value of the movie at index i
-                          cityBtn.attr("data-name", cities[i]);
+                          teamBtn.attr("data-name", teams[i]);
                           // Providing the button's text with a value of the movie at index i
-                          cityBtn.text(cities[i]);
+                          teamBtn.text(teams[i]);
                           // Adding the button to the HTML
-                          $("#topicBtns").append(cityBtn);
+                          $("#topicBtns").append(teamBtn);
                         }
         }
 
 // This function handles events where one button is clicked
-$("#addTopic").on("click", function(event) {
-  // event.preventDefault() prevents the form from trying to submit itself.
-  // We're using a form so that the user can hit enter instead of clicking the button if they want
-  event.preventDefault();
+          $("#addTopic").on("click", function(event) {
+            // event.preventDefault() prevents the form from trying to submit itself.
+            // We're using a form so that the user can hit enter instead of clicking the button if they want
+            event.preventDefault();
 
-  // This line will grab the text from the input box
-  var newCityInput = $("#topicInput").val().trim();
-  // The movie from the textbox is then added to our array
-  cities.push(newCityInput);
+            // This line will grab the text from the input box
+            
+            var newTeamInput = $("#topicInput").val().trim();
+            // The team from the textbox is then added to array
+            teams.push(newTeamInput);
 
-  // calling renderButtons which handles the processing of our movie array
-  createButtons();
-});
+            $('#topicInput').val("");
+            
+            console.log(teams)
 
-// Calling the renderButtons function at least once to display the initial list of movies
-createButtons();
+            // calling renderButtons which handles the processing of our movie array
+            createButtons();
+      });
+
+// Calling the renderButtons function at least once to display the initial list of teams
+    createButtons();
 
 
-//Click event for city buttons to access 10 images from giffy api
+//Click event for team buttons to access 10 images from giffy api
 
 //create var query url, ajax method, display data from ajax 
 
-$(".city").on("click", function() {
+$(".team").on("click", function() {
     // In this case, the "this" keyword refers to the button that was clicked
-    var cityPics = $(this).attr("data-name");
+    
+    $(".item").empty();
+    var teamPics = $(this).attr("data-name");
 
     // Constructing a URL to search Giphy for the name of the person who said the quote
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=x32n0DhaGUvtJB5iyZrrR89szqADjIy5&q="+cities+"&limit=10&offset=0&rating=PG&lang=en"
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=x32n0DhaGUvtJB5iyZrrR89szqADjIy5&q=football&q="+teamPics+"&limit=10&offset=0&rating=PG&lang=en"
     
     
+    
+
     // Performing our AJAX GET request
     $.ajax({
       url: queryURL,
@@ -88,19 +98,39 @@ $(".city").on("click", function() {
             var p = $("<p>").text("Rating: " + rating);
 
             // Creating an image tag
-            var cityImage = $("<img>");
+            var teamImage = $("<img>");
 
-            // Giving the image tag an src attribute of a proprty pulled off the
+            // Giving the image tag an src attribute of a property pulled off the
             // result item
-            cityImage.attr("src", results[i].images.fixed_height.url);
+            teamImage.attr("src", results[i].images.fixed_height.url);
 
-            // Appending the paragraph and personImage we created to the "gifDiv" div we created
+            // Appending the paragraph and teamImage we created to the "gifDisplayDiv" div
             gifDisplayDiv.append(p);
-            gifDisplayDiv.append(cityImage);
+            gifDisplayDiv.append(teamImage);
 
-            // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
+            // Prepending the gifDiv to the "gifDisplayDiv" div in the HTML
             $("#topicPics").prepend(gifDisplayDiv);
           }
         }
       });
+
+
+
+
+      // $(".gif").on("click", function() {
+      //   // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+      //   var state = $(this).attr("data-state");
+      //   // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+      //   // Then, set the image's data-state to animate
+      //   // Else set src to the data-still value
+      //   if (state === "still") {
+      //     $(this).attr("src", $(this).attr("data-animate"));
+      //     $(this).attr("data-state", "animate");
+      //   } else {
+      //     $(this).attr("src", $(this).attr("data-still"));
+      //     $(this).attr("data-state", "still");
+      //   }
+      // });
+
+
   });
