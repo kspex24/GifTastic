@@ -32,6 +32,20 @@ body {
    
 }
 
+.picBtn {
+
+    margin: 10px;
+    border: solid 8px;
+    border-color: black;
+}
+
+.picRating {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+
+
+}
+
 /* #info {
 
     text-align: right;

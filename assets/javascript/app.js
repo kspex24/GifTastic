@@ -1,13 +1,22 @@
-//Create array of cities for ibitial buttons
+//Document ready funcion
 
-      // Initial array of movies
-      var teams = ["LSU", "USC", "Notre Dame", "Oregon", "Alabama", "Georgia Tech", "Clemson", "Baylor"];
+$( document ).ready(function() {
+  console.log( "ready!" );
 
-    //Create click event to store text input
+//Create array of cities for ibitial buttons, define variables
+      var teams = ["LSU", "USC", "Michigan", "Oregon", "Alabama", "Georgia Tech", "Clemson", "Baylor"];
+      var teamBtn;
+      var teamPics;
+      var queryURL;
+      var results;
+      var gifDisplayDiv;
+      var rating;
+      var p;
+      var teamImage;
+      var newTeamInput;
+      var state;
 
-    //Push input to teams array
-
-    //Function to make buttons for each team in array, append to div
+    //Create click event to store text input, //Function to make buttons for each team in array, append to div
 
         function createButtons() {
 
@@ -31,44 +40,46 @@
                         }
         }
 
-// This function handles events where one button is clicked
-          $("#addTopic").on("click", function(event) {
-            // event.preventDefault() prevents the form from trying to submit itself.
-            // We're using a form so that the user can hit enter instead of clicking the button if they want
-            event.preventDefault();
-
-            // This line will grab the text from the input box
-            
-            var newTeamInput = $("#topicInput").val().trim();
-            // The team from the textbox is then added to array
-            teams.push(newTeamInput);
-
-            $('#topicInput').val("");
-            
-            console.log(teams)
-
-            // calling renderButtons which handles the processing of our movie array
-            createButtons();
-      });
-
-// Calling the renderButtons function at least once to display the initial list of teams
+// Calling the createButtons function at least once to display the initial list of teams
     createButtons();
 
 
-//Click event for team buttons to access 10 images from giffy api
+//Click event for team buttons to access 10 images from giffy api, Push input to teams array
+
+  // This function adds new tean button when submit is clicked
+         $(document).on("click", "#addTopic", function(event) {
+          
+          event.preventDefault();
+
+          // This line will grab the text from the input box
+          
+          var newTeamInput = $("#topicInput").val().trim();
+         
+          // The team from the textbox is then added to array
+
+          teams.push(newTeamInput);
+
+          //The text input field is emptied after click
+
+          $('#topicInput').val("");
+          
+          console.log(teams)
+
+          // calling renderButtons which handles the processing of our movie array
+          createButtons();
+    });  
 
 //create var query url, ajax method, display data from ajax 
 
-$(".team").on("click", function() {
-    // In this case, the "this" keyword refers to the button that was clicked
+$(document).on("click", ".team", function() {
+
+    // In this case, the "this" keyword refers to the button that was clicked, the div with item class where gifs are displayed is emptied and variable for teamPics is created
     
     $(".item").empty();
     var teamPics = $(this).attr("data-name");
 
-    // Constructing a URL to search Giphy for the name of the person who said the quote
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=x32n0DhaGUvtJB5iyZrrR89szqADjIy5&q=football&q="+teamPics+"&limit=10&offset=0&rating=PG&lang=en"
-    
-    
+    // Constructing a URL to search Giphy for the name of the team on the button plus the string college football
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=x32n0DhaGUvtJB5iyZrrR89szqADjIy5&q="+teamPics+"+college+football&limit=10&offset=0&rating=PG&lang=en"
     
 
     // Performing our AJAX GET request
@@ -94,8 +105,9 @@ $(".team").on("click", function() {
             // Storing the result item's rating
             var rating = results[i].rating;
 
-            // Creating a paragraph tag with the result item's rating
+            // Creating a paragraph tag with the result item's rating and adding a class to it
             var p = $("<p>").text("Rating: " + rating);
+            $(p).addClass("picRating");
 
             // Creating an image tag
             var teamImage = $("<img>");
@@ -103,8 +115,13 @@ $(".team").on("click", function() {
             // Giving the image tag an src attribute of a property pulled off the
             // result item
             teamImage.attr("src", results[i].images.fixed_height.url);
-
+            teamImage.addClass("picBtn");
+            teamImage.attr({'data-animate' : results[i].images.fixed_height.url});
+            teamImage.attr({'data-state' : "animate"});
+            teamImage.attr({'data-still' : results[i].images.fixed_height_still.url});
+            
             // Appending the paragraph and teamImage we created to the "gifDisplayDiv" div
+            
             gifDisplayDiv.append(p);
             gifDisplayDiv.append(teamImage);
 
@@ -112,25 +129,30 @@ $(".team").on("click", function() {
             $("#topicPics").prepend(gifDisplayDiv);
           }
         }
+ });
+
+
+      $(document).on("click", ".picBtn", function() {
+        // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+       
+        var state = $(this).attr("data-state");
+
+        console.log(state);
+        
+        // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+        // Then, set the image's data-state to animate
+        // Else set src to the data-still value
+
+        if (state === "still") {
+          $(this).attr("src", $(this).attr("data-animate"));
+          $(this).attr("data-state", "animate");
+        } else {
+          $(this).attr("src", $(this).attr("data-still"));
+          $(this).attr("data-state", "still");
+        }
+
+
       });
-
-
-
-
-      // $(".gif").on("click", function() {
-      //   // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-      //   var state = $(this).attr("data-state");
-      //   // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-      //   // Then, set the image's data-state to animate
-      //   // Else set src to the data-still value
-      //   if (state === "still") {
-      //     $(this).attr("src", $(this).attr("data-animate"));
-      //     $(this).attr("data-state", "animate");
-      //   } else {
-      //     $(this).attr("src", $(this).attr("data-still"));
-      //     $(this).attr("data-state", "still");
-      //   }
-      // });
-
-
   });
+
+});
