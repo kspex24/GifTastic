@@ -97,7 +97,7 @@ h2 {
     color: white;
     font-weight: bold;
     font-size: 48px;
-    font-stretch: ultra-expanded;
+    /* font-stretch: ultra-expanded; */
     
 }
 
@@ -105,10 +105,19 @@ h2 {
 /* No media query since this is the default in Bootstrap */
 
 /* Small devices (tablets, 768px and up) */
-@media (min-width: @screen-sm-min) {  ... }
+@media (min-width: @screen-sm-min) { ... }
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: @screen-md-min) { ... }
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @screen-lg-min) { ... }
+
+@media only screen and (max-width: 640px) {
+
+
+h2 {
+      font-size: 36px;
+    }
+
+  }
