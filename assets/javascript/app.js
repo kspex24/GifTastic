@@ -104,11 +104,13 @@ $(document).on("click", ".team", function() {
             var gifDisplayDiv = $("<div class='item'>");
 
             // Storing the result item's rating
-            var rating = results[i].rating;
+            var rating = results[i].rating.toUpperCase();
+            var title = results[i].title.toUpperCase();
 
             // Creating a paragraph tag with the result item's rating and adding a class to it
-            var p = $("<p>").text("Rating: " + rating);
+            var p = $("<p>").text("Title: "+title + " ----- "+"Rating: " + rating);
             $(p).addClass("picRating");
+
 
             // Creating an image tag
             var teamImage = $("<img>");
