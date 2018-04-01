@@ -1,15 +1,15 @@
 .jumbotron {
 
-    background-color: rgb(4, 143, 73);
-    height: 95px;
-    padding-top: 3px;
-    padding-bottom: 8px;
+    background-color: #654321;
+    height: 120px;
+    padding-top: 10px;
+    padding-bottom: 6px;
     margin-top: 20px;
 }
 
 body {
 
-    background-image: url("../images/light_grey_@2X.jpg");
+    background-image: url("../images/field.jpg");
 }
 
 #topicBtns {
@@ -20,29 +20,63 @@ body {
     margin-right:10px;
 }
 
-#topicInput {
 
-    margin-left: 3px;
-    margin-right: 3px;
+
+.team {
+    background-color: #654321;
+    border: solid 2px;
+    border-color: white;
+    color: white;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#addTeam {
+    margin-right: 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight:  bolder;
+    color: white;
+}
+
+#topicInput {
+    color: black;
+}
+
+#addTopic {
+    margin-left:10px;
+    color: black;
+    background-color:  #654321;
+    color: white;
+    font-weight: bold;
+    border: solid 2px;
+    border-color: white;
 }
 
 #topicPics {
 
-    align-content: center;
+    align: center;
    
 }
 
 .picBtn {
 
-    margin: 10px;
-    border: solid 8px;
+    margin: 20px;
+    border: solid 10px;
     border-color: black;
+    
 }
 
 .picRating {
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 18px;
-
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bolder;
+    background-color:white;
+    margin-top: 20px;
+    
 
 }
 
@@ -58,26 +92,23 @@ h1 {
 }
 
 h2 {
-    text-align: left;
+    text-align: center;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: white;
     font-weight: bold;
     font-size: 48px;
     font-stretch: ultra-expanded;
-    margin-left: 10px;
     
 }
 
-label {
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
 
-    padding-right: 10px;
-    padding-bottom: 10px;
-    font-size: 20px;
-    margin-bottom: 10px;
-    font-family: Arial, Helvetica, sans-serif;
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) {  ... }
 
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) { ... }
 
-}
-/* #topic {
-    float: left;
-} */
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) { ... }

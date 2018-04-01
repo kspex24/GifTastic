@@ -31,6 +31,7 @@ $( document ).ready(function() {
                           var teamBtn = $("<button>");
                           
                           teamBtn.addClass("team");
+                          teamBtn.addClass("btn btn-lg")
                           // Adding a data-attribute with a value of the movie at index i
                           teamBtn.attr("data-name", teams[i]);
                           // Providing the button's text with a value of the movie at index i
@@ -114,11 +115,12 @@ $(document).on("click", ".team", function() {
 
             // Giving the image tag an src attribute of a property pulled off the
             // result item
-            teamImage.attr("src", results[i].images.fixed_height.url);
+            teamImage.attr("src", results[i].images.fixed_height_still.url);
             teamImage.addClass("picBtn");
-            teamImage.attr({'data-animate' : results[i].images.fixed_height.url});
-            teamImage.attr({'data-state' : "animate"});
             teamImage.attr({'data-still' : results[i].images.fixed_height_still.url});
+            teamImage.attr({'data-state' : "still"});
+            teamImage.attr({'data-animate' : results[i].images.fixed_height.url});
+            // teamImage.attr({'data-state' : "animate"});
             
             // Appending the paragraph and teamImage we created to the "gifDisplayDiv" div
             
@@ -130,11 +132,13 @@ $(document).on("click", ".team", function() {
           }
         }
  });
-
+});
 
       $(document).on("click", ".picBtn", function() {
         // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-       
+       console.log("click")
+
+
         var state = $(this).attr("data-state");
 
         console.log(state);
@@ -152,7 +156,7 @@ $(document).on("click", ".team", function() {
         }
 
 
-      });
+ 
   });
 
 });
