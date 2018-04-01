@@ -80,7 +80,7 @@ $(document).on("click", ".team", function() {
     var teamPics = $(this).attr("data-name");
 
     // Constructing a URL to search Giphy for the name of the team on the button plus the string college football
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=x32n0DhaGUvtJB5iyZrrR89szqADjIy5&q="+teamPics+"+college+football&limit=10&offset=0&rating=PG&lang=en"
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=x32n0DhaGUvtJB5iyZrrR89szqADjIy5&q==="+teamPics+"+college+football&limit=10&offset=0&rating=PG&lang=en"
     
 
     // Performing our AJAX GET request
@@ -108,7 +108,7 @@ $(document).on("click", ".team", function() {
             var title = results[i].title.toUpperCase();
 
             // Creating a paragraph tag with the result item's rating and adding a class to it
-            var p = $("<p>").text("Title: "+title + " ----- "+"Rating: " + rating);
+            var p = $("<p>").text("Title: "+title + " ----- "+"Rating: " + rating + " ----- "+"Click gif to play, click again to pause.");
             $(p).addClass("picRating");
 
 
