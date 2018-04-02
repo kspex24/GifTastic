@@ -5,6 +5,8 @@
     padding-top: 10px;
     padding-bottom: 6px;
     margin-top: 20px;
+    border: solid 2px;
+    border-color: white;
 }
 
 body {
@@ -43,6 +45,8 @@ body {
 
 #topicInput {
     color: black;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #addTopic {
@@ -80,11 +84,6 @@ body {
 
 }
 
-/* #info {
-
-    text-align: right;
-
-} */
     
 
 h1 {
@@ -97,7 +96,7 @@ h2 {
     color: white;
     font-weight: bold;
     font-size: 48px;
-    /* font-stretch: ultra-expanded; */
+    font-stretch: ultra-expanded;
     
 }
 
@@ -117,7 +116,7 @@ h2 {
 
 
 h2 {
-      font-size: 32px;
+      font-size: 34px;
     }
 
   }
